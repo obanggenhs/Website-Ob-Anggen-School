@@ -38,6 +38,11 @@ class HomeController extends Controller
             ->reject(fn ($m) => in_array($m->type, ['beranda', 'dropdown', 'tautan'], true))
             ->values();
 
+        // Tombol "Daftar sekarang" di Beranda: tampil bila menu Pendaftaran aktif
+        // DAN minimal satu jalur pendaftaran sedang dibuka.
+        $registrationOpen = Menu::moduleEnabled('pendaftaran')
+            && RegistrationType::where('is_open', true)->exists();
+        
         return view('web.home', compact('home', 'blocks', 'branches', 'agenda', 'news', 'testimonials', 'shortcuts'));
     }
 }
