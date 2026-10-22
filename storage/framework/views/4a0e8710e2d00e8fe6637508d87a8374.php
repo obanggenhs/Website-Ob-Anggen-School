@@ -12,12 +12,6 @@
         </div>
     </div>
     <div class="card-body">
-        <?php if (! (\App\Support\WhatsAppSender::enabled() && \App\Support\WhatsAppSender::configured())): ?>
-            <div class="alert alert-warning small py-2 d-flex gap-2 align-items-start">
-                <i class="bi bi-exclamation-triangle-fill"></i>
-                <div>WhatsApp belum terhubung, jadi pesan ke pendaftar hanya lewat email. <a href="<?php echo e(route('dashboard.whatsapp.edit')); ?>" class="alert-link">Hubungkan WhatsApp</a></div>
-            </div>
-        <?php endif; ?>
         <?php $__empty_1 = true; $__currentLoopData = $r->notifications->take(12); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $n): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <div class="d-flex gap-2 align-items-start <?php echo e($loop->last ? '' : 'mb-2 pb-2 border-bottom'); ?>">
                 <i class="bi <?php echo e($n->channel === 'email' ? 'bi-envelope' : 'bi-whatsapp'); ?> mt-1"></i>
