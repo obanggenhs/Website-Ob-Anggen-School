@@ -7,6 +7,9 @@
     $blocksTop = setting('home_blocks_position') === 'top';
     $showVideo = setting('home_show_video') && setting('video_url');
 
+        // Tombol hero "Daftar sekarang" ikut status menu/jalur Pendaftaran (dihitung di HomeController)
+    $showHeroButton = setting('hero_button') && ($registrationOpen ?? true);
+
     // Latar hero diatur di Studio > Beranda > "Latar belakang hero Beranda" (foto / video / YouTube / slide)
     $heroMedia = $home?->headerMedia() ?? ['type' => 'image', 'src' => media_url(setting('hero_image')), 'poster' => media_url(setting('hero_image'))];
 

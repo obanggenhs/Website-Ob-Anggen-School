@@ -9,6 +9,7 @@ use App\Models\Menu;
 use App\Models\News;
 use App\Models\RegistrationType;
 use App\Models\Testimonial;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -38,11 +39,19 @@ class HomeController extends Controller
             ->reject(fn ($m) => in_array($m->type, ['beranda', 'dropdown', 'tautan'], true))
             ->values();
 
-        // Tombol "Daftar sekarang" di Beranda: tampil bila menu Pendaftaran aktif
-        // DAN minimal satu jalur pendaftaran sedang dibuka.
-        $registrationOpen = Menu::moduleEnabled('pendaftaran')
+        // Tombol "Daftar sekarang" di hero Beranda mengikuti menu Pendaftaran di navbar:
+        // 1) menu Pendaftaran (grup atau submenu) harus tampil di navbar, dan
+        // 2) minimal satu jalur pendaftaran sedang dibuka.
+        $registrationMenuVisible = Menu::navTree()
+            ->flatMap(fn ($m) => array_merge([$m], $m->children->all()))
+            ->contains(fn ($m) => $m->isVisible() && (
+                $m->type === 'pendaftaran'
+                || Str::contains(Str::lower($m->slug.' '.$m->title), ['pendaftaran', 'ppdb'])
+            ));
+
+        $registrationOpen = $registrationMenuVisible
             && RegistrationType::where('is_open', true)->exists();
-        
+
         return view('web.home', compact('home', 'blocks', 'branches', 'agenda', 'news', 'testimonials', 'shortcuts', 'registrationOpen'));
     }
 }
