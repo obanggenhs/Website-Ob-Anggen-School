@@ -43,6 +43,6 @@ class HomeController extends Controller
         $registrationOpen = Menu::moduleEnabled('pendaftaran')
             && RegistrationType::where('is_open', true)->exists();
         
-        return view('web.home', compact('home', 'blocks', 'branches', 'agenda', 'news', 'testimonials', 'shortcuts'));
+        return view('web.home', compact('home', 'blocks', 'branches', 'agenda', 'news', 'testimonials', 'shortcuts', 'registrationOpen'));
     }
 }
