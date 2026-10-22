@@ -24,7 +24,7 @@
             <h1 class="oa-hero__title">{{ setting('hero_title') }}</h1>
             <p class="oa-hero__text">{{ setting('hero_subtitle') }}</p>
             <div class="d-flex flex-wrap gap-2">
-                @if ($showHeroButton)
+                @if (setting('hero_button'))
                     <a href="{{ url(setting('hero_button_url', '/')) }}" class="btn btn-accent btn-lg">{{ setting('hero_button') }}</a>
                 @endif
                 @if ($showVideo)
