@@ -7,6 +7,7 @@ use App\Models\Branch;
 use App\Models\CalendarEvent;
 use App\Models\Menu;
 use App\Models\News;
+use App\Models\RegistrationType;
 use App\Models\Testimonial;
 
 class HomeController extends Controller
