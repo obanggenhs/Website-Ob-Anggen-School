@@ -28,7 +28,7 @@
     <?php else: ?>
         <div class="row g-3">
             <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col-md-6" data-reveal>
+                <div class="col-12 col-sm-6 col-lg-3" data-reveal>
                     <a href="<?php echo e(route('uniqueness.show', $item->slug)); ?>" class="oa-card">
                         <div class="oa-card__img">
                             <img src="<?php echo e($item->image_url); ?>" alt="<?php echo e($item->title); ?>" loading="lazy">
@@ -68,5 +68,4 @@
         </section>
     <?php endif; ?>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.web-page', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH S:\oa-school\resources\views/web/uniqueness/index.blade.php ENDPATH**/ ?>

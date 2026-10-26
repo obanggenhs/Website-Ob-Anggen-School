@@ -11,7 +11,7 @@
     @else
         <div class="row g-3">
             @foreach ($items as $item)
-                <div class="col-md-6" data-reveal>
+                <div class="col-12 col-sm-6 col-lg-3" data-reveal>
                     <a href="{{ route('uniqueness.show', $item->slug) }}" class="oa-card">
                         <div class="oa-card__img">
                             <img src="{{ $item->image_url }}" alt="{{ $item->title }}" loading="lazy">
